@@ -1,13 +1,21 @@
 # HỆ THỐNG QUẢN LÝ SIÊU THỊ
+
 ## 1. SETUP
+
 ### 1.1. Database
+
 - Mở folder Database, sau đó mở file RunAll.sql bằng MSSQL;
 - Bật SQLCMD Mode (Query -> SQLCMD Mode, xem ảnh SETUP.PNG).
 - Chọn toàn bộ dòng lệnh trong file và chạy (không cần chạy từng dòng).
+
 ### 1.2. App
+
 - Vào folder App, sau đó mở file QLSieuThi (.csproject hoặc .sln) bằng Visual Studio, build và chạy.
+
 ## 2. GIẢI THÍCH
+
 ### 2.1. Tổng quan hệ thống
+
 - Hệ thống quản lý siêu thị được xây dựng nhằm hỗ trợ các hoạt động chính bao gồm:
   - Quản lý nhân viên
   - Quản lý sản phẩm và danh mục
@@ -27,6 +35,7 @@
     - Products, Categories, ProductCategories
     - InventoryTransactions
     - Customers
+
 ### 2.2. Quản lý nhân viên và phân quyền
 
 - Các bảng liên quan:
@@ -156,6 +165,7 @@
   - Ghi nhận tất cả các thay đổi liên quan đến sản phẩm
 
 ## 3. HƯỚNG DẪN SỬ DỤNG
+
 ### 3.1. Tổng quan giao diện
 
 - Ứng dụng được thiết kế dạng menu chính (MenuStrip), bao gồm các mục:
@@ -172,7 +182,6 @@
   - Không xử lý logic nghiệp vụ ở phía WinForms
   - Trigger trong database tự động xử lý tồn kho và ghi log
 
-
 ### 3.2. System
 
 - Bao gồm:
@@ -185,7 +194,6 @@
 
 - Liên quan:
   - Procedure đăng nhập trong `01_Auth.sql`
-
 
 ### 3.3. Management
 
@@ -206,7 +214,6 @@
 
 - Lưu ý:
   - Khi cập nhật Employees, trigger sẽ tự động ghi log vào `EmployeesAuditLogs`
-
 
 ### 3.4. Sales
 
