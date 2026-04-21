@@ -286,3 +286,7 @@
 - Hệ thống tự động:
   - Cộng tồn kho
   - Ghi log giao dịch
+
+## 4. LƯU Ý
+
+- Nếu cần thì tự thêm procedure và trigger, hạn chế logic database ở backend
