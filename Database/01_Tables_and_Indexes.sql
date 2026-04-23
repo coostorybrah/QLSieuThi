@@ -2,6 +2,8 @@
 ------------------------------------------------------ TABLES ------------------------------------------------------
 --================================================================================================================--
 
+GO
+
 -- EMPLOYEE ROLES (admin, cashier, manager)
 CREATE TABLE Roles (
     RoleId INT IDENTITY PRIMARY KEY,
@@ -12,7 +14,7 @@ CREATE TABLE Roles (
 CREATE TABLE Employees (
     EmployeeId INT IDENTITY PRIMARY KEY,
     FullName NVARCHAR(100) NOT NULL,
-    Phone NVARCHAR(20),
+    Phone NVARCHAR(20) UNIQUE,
     Email NVARCHAR(100) UNIQUE,
     Address NVARCHAR(255),
     Username NVARCHAR(50) NOT NULL UNIQUE,
