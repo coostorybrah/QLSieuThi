@@ -29,6 +29,7 @@ namespace QLSieuThi
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
+            lblChangeValue.Text = "Không đủ tiền";
             txtAmountPaid.Focus();
         }
 
@@ -52,11 +53,11 @@ namespace QLSieuThi
 
                 lblChangeValue.Text = change >= 0
                     ? change.ToString("N0") + " ₫"
-                    : "0 ₫";
+                    : "Không đủ tiền";
             }
             else
             {
-                lblChangeValue.Text = "0 ₫";
+                lblChangeValue.Text = "Không đủ tiền";
             }
         }
 

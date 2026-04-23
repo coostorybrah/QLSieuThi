@@ -277,13 +277,12 @@ namespace QLSieuThi
         }
 
         // CHECKOUT LOGIC
-        private void ProcessCheckout()
+        private int ProcessCheckout()
         {
             try
             {
                 DatabaseHelper db = new DatabaseHelper();
 
-                // 1. Create sale
                 var saleResult = db.ExecuteQuery(
                     "sp_CreateSale",
                     new SqlParameter("@EmployeeId", UserSession.EmployeeId),
@@ -295,7 +294,6 @@ namespace QLSieuThi
 
                 int saleId = Convert.ToInt32(saleResult.Rows[0]["SaleId"]);
 
-                // 2. Add all items
                 foreach (var item in cart)
                 {
                     db.ExecuteNonQuery(
@@ -306,21 +304,20 @@ namespace QLSieuThi
                     );
                 }
 
-                // 3. Finalize sale
                 db.ExecuteNonQuery(
                     "sp_FinalizeSale",
                     new SqlParameter("@SaleId", saleId),
                     new SqlParameter("@Discount", 0)
                 );
 
-                // 4. Clear cart
                 cart.Clear();
 
-                MessageBox.Show("Thanh toán thành công!");
+                return saleId;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Checkout failed: " + ex.Message);
+                return -1;
             }
         }
 
@@ -342,11 +339,17 @@ namespace QLSieuThi
 
             decimal total = cart.Sum(x => x.Total);
 
-            using (var frm = new FrmCheckout(cart.ToList(), total))
+            using (var frmCheckout = new FrmCheckout(cart.ToList(), total))
             {
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frmCheckout.ShowDialog() == DialogResult.OK)
                 {
-                    ProcessCheckout();
+                    int saleId = ProcessCheckout();
+
+                    if (saleId > 0)
+                    {
+                        var frmInvoice = new FrmInvoice(saleId);
+                        frmInvoice.ShowDialog();
+                    }
                 }
             }
         }

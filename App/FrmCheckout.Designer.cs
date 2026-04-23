@@ -44,69 +44,76 @@
             // 
             this.cartHeading.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cartHeading.AutoSize = true;
-            this.cartHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.cartHeading.Location = new System.Drawing.Point(256, 9);
+            this.cartHeading.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.cartHeading.Location = new System.Drawing.Point(198, 15);
+            this.cartHeading.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.cartHeading.Name = "cartHeading";
-            this.cartHeading.Size = new System.Drawing.Size(205, 32);
+            this.cartHeading.Size = new System.Drawing.Size(160, 26);
             this.cartHeading.TabIndex = 2;
             this.cartHeading.Text = "THANH TOÁN";
             // 
             // lblTotalText
             // 
             this.lblTotalText.AutoSize = true;
-            this.lblTotalText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblTotalText.Location = new System.Drawing.Point(110, 297);
+            this.lblTotalText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblTotalText.Location = new System.Drawing.Point(84, 226);
+            this.lblTotalText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalText.Name = "lblTotalText";
-            this.lblTotalText.Size = new System.Drawing.Size(100, 25);
+            this.lblTotalText.Size = new System.Drawing.Size(87, 19);
             this.lblTotalText.TabIndex = 3;
             this.lblTotalText.Text = "Tổng tiền:";
             // 
             // lblTotalValue
             // 
             this.lblTotalValue.AutoSize = true;
-            this.lblTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblTotalValue.Location = new System.Drawing.Point(240, 297);
+            this.lblTotalValue.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblTotalValue.Location = new System.Drawing.Point(175, 226);
+            this.lblTotalValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalValue.Name = "lblTotalValue";
-            this.lblTotalValue.Size = new System.Drawing.Size(23, 25);
+            this.lblTotalValue.Size = new System.Drawing.Size(18, 19);
             this.lblTotalValue.TabIndex = 4;
             this.lblTotalValue.Text = "0";
             // 
             // lblAmountPaid
             // 
             this.lblAmountPaid.AutoSize = true;
-            this.lblAmountPaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblAmountPaid.Location = new System.Drawing.Point(110, 380);
+            this.lblAmountPaid.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblAmountPaid.Location = new System.Drawing.Point(83, 280);
+            this.lblAmountPaid.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAmountPaid.Name = "lblAmountPaid";
-            this.lblAmountPaid.Size = new System.Drawing.Size(113, 25);
+            this.lblAmountPaid.Size = new System.Drawing.Size(100, 19);
             this.lblAmountPaid.TabIndex = 5;
             this.lblAmountPaid.Text = "Khách đưa:";
             // 
             // lblChangeText
             // 
             this.lblChangeText.AutoSize = true;
-            this.lblChangeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblChangeText.Location = new System.Drawing.Point(110, 476);
+            this.lblChangeText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblChangeText.Location = new System.Drawing.Point(83, 330);
+            this.lblChangeText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChangeText.Name = "lblChangeText";
-            this.lblChangeText.Size = new System.Drawing.Size(100, 25);
+            this.lblChangeText.Size = new System.Drawing.Size(88, 19);
             this.lblChangeText.TabIndex = 7;
             this.lblChangeText.Text = "Tiền thừa:";
             // 
             // lblChangeValue
             // 
             this.lblChangeValue.AutoSize = true;
-            this.lblChangeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblChangeValue.Location = new System.Drawing.Point(240, 476);
+            this.lblChangeValue.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblChangeValue.Location = new System.Drawing.Point(175, 330);
+            this.lblChangeValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChangeValue.Name = "lblChangeValue";
-            this.lblChangeValue.Size = new System.Drawing.Size(23, 25);
+            this.lblChangeValue.Size = new System.Drawing.Size(18, 19);
             this.lblChangeValue.TabIndex = 8;
             this.lblChangeValue.Text = "0";
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnConfirm.Location = new System.Drawing.Point(115, 529);
+            this.btnConfirm.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnConfirm.Location = new System.Drawing.Point(118, 393);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(181, 42);
+            this.btnConfirm.Size = new System.Drawing.Size(142, 34);
             this.btnConfirm.TabIndex = 9;
             this.btnConfirm.Text = "XÁC NHẬN";
             this.btnConfirm.UseVisualStyleBackColor = true;
@@ -114,10 +121,11 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnCancel.Location = new System.Drawing.Point(428, 529);
+            this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnCancel.Location = new System.Drawing.Point(315, 393);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(181, 42);
+            this.btnCancel.Size = new System.Drawing.Size(133, 34);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "HỦY";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -125,26 +133,30 @@
             // 
             // txtAmountPaid
             // 
-            this.txtAmountPaid.Location = new System.Drawing.Point(115, 418);
+            this.txtAmountPaid.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtAmountPaid.Location = new System.Drawing.Point(187, 280);
+            this.txtAmountPaid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtAmountPaid.Name = "txtAmountPaid";
-            this.txtAmountPaid.Size = new System.Drawing.Size(232, 22);
+            this.txtAmountPaid.Size = new System.Drawing.Size(212, 26);
             this.txtAmountPaid.TabIndex = 11;
             this.txtAmountPaid.TextChanged += new System.EventHandler(this.txtAmountPaid_TextChanged);
             // 
             // lstSummary
             // 
+            this.lstSummary.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lstSummary.FormattingEnabled = true;
-            this.lstSummary.ItemHeight = 16;
-            this.lstSummary.Location = new System.Drawing.Point(115, 76);
+            this.lstSummary.ItemHeight = 18;
+            this.lstSummary.Location = new System.Drawing.Point(86, 62);
+            this.lstSummary.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstSummary.Name = "lstSummary";
-            this.lstSummary.Size = new System.Drawing.Size(534, 180);
+            this.lstSummary.Size = new System.Drawing.Size(402, 130);
             this.lstSummary.TabIndex = 12;
             // 
             // FrmCheckout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 625);
+            this.ClientSize = new System.Drawing.Size(559, 508);
             this.ControlBox = false;
             this.Controls.Add(this.lstSummary);
             this.Controls.Add(this.txtAmountPaid);
@@ -157,6 +169,7 @@
             this.Controls.Add(this.lblTotalText);
             this.Controls.Add(this.cartHeading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmCheckout";
             this.Text = "Thanh toán";
             this.ResumeLayout(false);
