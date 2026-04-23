@@ -243,3 +243,106 @@ BEGIN
     ORDER BY a.ChangedAt DESC;
 END
 GO
+
+
+-- Procedure: Update own profile (full name, username, phone, email, address)
+CREATE OR ALTER PROCEDURE sp_UpdateMyProfile
+    @EmployeeId INT,
+
+    @FullName NVARCHAR(100) = NULL,
+    @Username NVARCHAR(50) = NULL,
+    @Phone NVARCHAR(20) = NULL,
+    @Email NVARCHAR(100) = NULL,
+    @Address NVARCHAR(255) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET @FullName = NULLIF(LTRIM(RTRIM(@FullName)), '');
+    SET @Username = NULLIF(LTRIM(RTRIM(@Username)), '');
+    SET @Phone    = NULLIF(LTRIM(RTRIM(@Phone)), '');
+    SET @Email    = NULLIF(LTRIM(RTRIM(@Email)), '');
+    SET @Address  = NULLIF(LTRIM(RTRIM(@Address)), '');
+
+    -- 1. No-op check
+    IF @FullName IS NULL 
+       AND @Username IS NULL 
+       AND @Phone IS NULL
+       AND @Email IS NULL 
+       AND @Address IS NULL
+    BEGIN
+        RAISERROR (N'No fields to update.', 16, 1);
+        RETURN;
+    END
+
+    -- 2. Validate employee exists
+    IF NOT EXISTS (SELECT 1 FROM Employees WHERE EmployeeId = @EmployeeId)
+    BEGIN
+        RAISERROR (N'Employee not found.', 16, 1);
+        RETURN;
+    END
+
+    -- 3. Username uniqueness
+    IF @Username IS NOT NULL AND EXISTS (
+        SELECT 1 FROM Employees 
+        WHERE Username = @Username AND EmployeeId <> @EmployeeId
+    )
+    BEGIN
+        RAISERROR (N'Username already exists.', 16, 1);
+        RETURN;
+    END
+
+    -- 4. Email uniqueness (if your system requires it)
+    IF @Email IS NOT NULL AND EXISTS (
+        SELECT 1 FROM Employees 
+        WHERE Email = @Email AND EmployeeId <> @EmployeeId
+    )
+    BEGIN
+        RAISERROR (N'Email already exists.', 16, 1);
+        RETURN;
+    END
+
+    -- 5. Phone uniqueness
+    IF @Phone IS NOT NULL AND EXISTS (
+        SELECT 1 FROM Employees 
+        WHERE Phone = @Phone AND EmployeeId <> @EmployeeId
+    )
+    BEGIN
+        RAISERROR (N'Phone already exists.', 16, 1);
+        RETURN;
+    END
+
+    -- 6. PATCH update
+    UPDATE Employees
+    SET
+        FullName = CASE WHEN @FullName IS NOT NULL THEN @FullName ELSE FullName END,
+        Username = CASE WHEN @Username IS NOT NULL THEN @Username ELSE Username END,
+        Phone = CASE WHEN @Phone IS NOT NULL THEN @Phone ELSE Phone END,
+        Email    = CASE WHEN @Email IS NOT NULL THEN @Email ELSE Email END,
+        Address  = CASE WHEN @Address IS NOT NULL THEN @Address ELSE Address END
+    WHERE EmployeeId = @EmployeeId;
+
+    -- 7. Return updated data
+    SELECT EmployeeId, FullName, Username, Phone, Email, Address
+    FROM Employees
+    WHERE EmployeeId = @EmployeeId;
+END
+GO
+
+-- Procedure: Get own profile
+CREATE OR ALTER PROCEDURE sp_GetMyProfile
+    @EmployeeId INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Optional safety check
+    IF NOT EXISTS (SELECT 1 FROM Employees WHERE EmployeeId = @EmployeeId AND Status = 1)
+    BEGIN
+        RAISERROR (N'User not found or inactive.', 16, 1);
+        RETURN;
+    END
+
+    SELECT *
+    FROM dbo.fn_GetEmployeeById(@EmployeeId);
+END
+GO
