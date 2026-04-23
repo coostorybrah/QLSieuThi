@@ -196,7 +196,7 @@ END
 GO
 
 -- Procedure 14: Report Invoice
-CREATE OR ALTER PROCEDURE sp_Report_Invoice
+CREATE OR ALTER PROCEDURE sp_ReportInvoice
     @SaleId INT
 AS
 BEGIN
