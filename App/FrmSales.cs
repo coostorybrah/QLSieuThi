@@ -23,6 +23,9 @@ namespace QLSieuThi
 
         private void FrmSales_Load(object sender, EventArgs e)
         {
+            UpdateTotal();
+            btnCheckout.Enabled = cart.Count > 0;
+
             SetupCartGrid();
 
             // DELEGATES
