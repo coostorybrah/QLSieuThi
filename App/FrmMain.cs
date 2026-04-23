@@ -12,12 +12,16 @@ namespace QLSieuThi
 {
     public partial class FrmMain : Form
     {
-        private int childFormNumber = 0;
-
         public FrmMain()
         {
             InitializeComponent();
             this.IsMdiContainer = true;
+        }
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            OpenChildForm(new FrmUserInfo());
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -29,7 +33,35 @@ namespace QLSieuThi
                 return;
             }
 
-            mnuSystem.Text = UserSession.FullName;
+            this.LayoutMdi(MdiLayout.Cascade);
+
+            RefreshUserName();
+        }
+        
+        public void RefreshUserName()
+        {
+            mnuUser.Text = UserSession.FullName;
+        }
+
+        public void OpenChildForm(Form child)
+        {
+            // Close existing children
+            foreach (Form frm in this.MdiChildren.Cast<Form>().ToList())
+            {
+                frm.Close();
+            }
+
+            child.MdiParent = this;
+
+            child.FormBorderStyle = FormBorderStyle.None;
+            child.ControlBox = false;
+            child.AutoScroll = true;
+
+            child.Dock = DockStyle.Fill;
+
+            child.Location = new Point(0, 0);
+
+            child.Show();
         }
 
         private void mnuExit_Click(object sender, EventArgs e)
@@ -44,17 +76,14 @@ namespace QLSieuThi
             this.Close();
         }
 
-        private void OpenChildForm(Form child)
+        private void mnuSales_Click(object sender, EventArgs e)
         {
-            // Close existing child (optional but clean)
-            foreach (Form frm in this.MdiChildren)
-            {
-                frm.Close();
-            }
+            OpenChildForm(new FrmSales());
+        }
 
-            child.MdiParent = this;
-            child.StartPosition = FormStartPosition.CenterScreen;
-            child.Show();
+        private void mnuUserInfo_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FrmUserInfo());
         }
     }
 }

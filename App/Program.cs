@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -8,30 +9,67 @@ namespace QLSieuThi
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            FrmLogin login = new FrmLogin();
+            bool DEV_MODE = true;
 
-            login.LoginSuccess += () =>
+            if (DEV_MODE)
             {
-                FrmMain main = new FrmMain();
+                DatabaseHelper db = new DatabaseHelper();
 
-                main.FormClosed += (s, e) =>
+                int devUserId = 1; // Must exist in DB
+
+                var result = db.ExecuteQuery(
+                    "sp_GetMyProfile",
+                    new SqlParameter("@EmployeeId", devUserId)
+                );
+
+                if (result.Rows.Count == 0)
                 {
-                    login.Show(); // show login again after logout
+                    MessageBox.Show("Dev user not found.");
+                    return;
+                }
+
+                var row = result.Rows[0];
+
+                UserSession.EmployeeId = Convert.ToInt32(row["EmployeeId"]);
+                UserSession.FullName = row["FullName"].ToString();
+                UserSession.Username = row["Username"].ToString();
+                UserSession.Phone = row["Phone"].ToString();
+                UserSession.Email = row["Email"].ToString();
+                UserSession.Address = row["Address"].ToString();
+                UserSession.RoleName = row["RoleName"].ToString();
+                UserSession.LoginTime = DateTime.Now;
+
+                Application.Run(new FrmMain());
+            }
+
+            else
+            {
+                FrmLogin login = new FrmLogin();
+
+                login.LoginSuccess += () =>
+                {
+                    ShowMainForm(login);
                 };
 
-                main.Show();
-            };
+                Application.Run(login);
+            }
+        }
+        private static void ShowMainForm(FrmLogin login)
+        {
+            login.Hide();
 
-            Application.Run(login);
+            FrmMain main = new FrmMain();
+
+            // When main closes → show login again
+            main.FormClosed += (s, e) => login.Show();
+
+            main.Show();
         }
     }
 }

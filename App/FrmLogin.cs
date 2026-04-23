@@ -43,9 +43,12 @@ namespace QLSieuThi
                 {
                     UserSession.EmployeeId = Convert.ToInt32(result.Rows[0]["EmployeeId"]);
                     UserSession.FullName = result.Rows[0]["FullName"].ToString();
+                    UserSession.Username = result.Rows[0]["Username"].ToString();
+                    UserSession.Phone = result.Rows[0]["Phone"].ToString();
+                    UserSession.Email = result.Rows[0]["Email"].ToString();
+                    UserSession.Address = result.Rows[0]["Address"].ToString();
                     UserSession.RoleName = result.Rows[0]["RoleName"].ToString();
-
-                    MessageBox.Show("Login successful!");
+                    UserSession.LoginTime = DateTime.Now;
 
                     LoginSuccess?.Invoke();
 
@@ -56,9 +59,9 @@ namespace QLSieuThi
                     MessageBox.Show("Invalid username or password.");
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Database error. Please try again.");
+                MessageBox.Show(ex.Message);
             }
         }
 
