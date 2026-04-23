@@ -28,21 +28,24 @@ namespace QLSieuThi
             // DELEGATES
             txtBarcode.KeyDown += txtBarcode_KeyDown;
 
-            cart.ListChanged += (s, ev) => UpdateTotal();
+            cart.ListChanged += (s, ev) =>
+            {
+                btnCheckout.Enabled = cart.Count > 0;
+                UpdateTotal();
+            };
 
             dgvCart.CellBeginEdit += dgvCart_CellBeginEdit;
             dgvCart.CellEndEdit += dgvCart_CellEndEdit;
             dgvCart.KeyDown += dgvCart_KeyDown;
             dgvCart.CellContentClick += dgvCart_CellContentClick;
         }
-
-        // BASIC FUNCTIONS
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
             txtBarcode.Focus();
         }
 
+        // BASIC FUNCTIONS
         private void RefreshCart()
         {
             dgvCart.CommitEdit(DataGridViewDataErrorContexts.Commit);
@@ -54,6 +57,7 @@ namespace QLSieuThi
             decimal total = cart.Sum(x => x.Total);
             lblTotalValue.Text = total.ToString("N0") + " ₫";
         }
+
 
         // BARCODE LOGIC
         private void txtBarcode_KeyDown(object sender, KeyEventArgs e)
@@ -269,21 +273,9 @@ namespace QLSieuThi
             dgvCart.RowHeadersVisible = false;
         }
 
-        private void btnAddToCart_Click(object sender, EventArgs e)
+        // CHECKOUT LOGIC
+        private void ProcessCheckout()
         {
-            AddProductToCart(txtBarcode.Text.Trim());
-            txtBarcode.Clear();
-            txtBarcode.Focus();
-        }
-
-        private void btnCheckout_Click(object sender, EventArgs e)
-        {
-            if (cart.Count == 0)
-            {
-                MessageBox.Show("Cart is empty.");
-                return;
-            }
-
             try
             {
                 DatabaseHelper db = new DatabaseHelper();
@@ -326,6 +318,33 @@ namespace QLSieuThi
             catch (Exception ex)
             {
                 MessageBox.Show("Checkout failed: " + ex.Message);
+            }
+        }
+
+        // UI INTERACTIONS
+        private void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            AddProductToCart(txtBarcode.Text.Trim());
+            txtBarcode.Clear();
+            txtBarcode.Focus();
+        }
+
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+            if (cart.Count == 0)
+            {
+                MessageBox.Show("Giỏ hàng trống.");
+                return;
+            }
+
+            decimal total = cart.Sum(x => x.Total);
+
+            using (var frm = new FrmCheckout(cart.ToList(), total))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    ProcessCheckout();
+                }
             }
         }
 

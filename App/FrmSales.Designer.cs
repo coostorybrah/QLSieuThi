@@ -101,17 +101,18 @@
             // btnCheckout
             // 
             this.btnCheckout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnCheckout.Location = new System.Drawing.Point(207, 532);
+            this.btnCheckout.Location = new System.Drawing.Point(226, 532);
             this.btnCheckout.Name = "btnCheckout";
             this.btnCheckout.Size = new System.Drawing.Size(162, 46);
             this.btnCheckout.TabIndex = 1;
             this.btnCheckout.Text = "THANH TOÁN";
             this.btnCheckout.UseVisualStyleBackColor = true;
+            this.btnCheckout.Click += new System.EventHandler(this.btnCheckout_Click);
             // 
             // btnClearCart
             // 
             this.btnClearCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnClearCart.Location = new System.Drawing.Point(574, 532);
+            this.btnClearCart.Location = new System.Drawing.Point(521, 532);
             this.btnClearCart.Name = "btnClearCart";
             this.btnClearCart.Size = new System.Drawing.Size(163, 46);
             this.btnClearCart.TabIndex = 2;
