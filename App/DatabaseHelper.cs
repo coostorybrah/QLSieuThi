@@ -9,9 +9,7 @@ public class DatabaseHelper
 
     public DatabaseHelper()
     {
-        _connectionString = ConfigurationManager
-            .ConnectionStrings["QLSieuThiDB"]
-            .ConnectionString;
+        _connectionString = GetValidConnectionString();
     }
 
     // Execute SELECT (returns DataTable)
@@ -47,5 +45,30 @@ public class DatabaseHelper
             conn.Open();
             return cmd.ExecuteNonQuery();
         }
+    }
+
+    private string GetValidConnectionString()
+    {
+        string[] sources =
+        {
+        @"Data Source=.;Initial Catalog=QLSieuThiDB;Integrated Security=True",
+        @"Data Source=.\SQLEXPRESS;Initial Catalog=QLSieuThiDB;Integrated Security=True",
+        @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QLSieuThiDB;Integrated Security=True"
+    };
+
+        foreach (var connectionString in sources)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    return connectionString; // success
+                }
+            }
+            catch { }
+        }
+
+        throw new Exception("No valid SQL Server instance found.");
     }
 }

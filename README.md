@@ -4,7 +4,7 @@
 
 ### 1.1. Database
 
-- Mở folder Database, sau đó mở file RunAll.sql bằng MSSQL;
+- Mở folder Database, sau đó chạy 2 file sql (bằng MSSM) theo đúng thứ tự;
 - Bật SQLCMD Mode (Query -> SQLCMD Mode, xem ảnh SETUP.PNG).
 - Chọn toàn bộ dòng lệnh trong file và chạy (không cần chạy từng dòng).
 

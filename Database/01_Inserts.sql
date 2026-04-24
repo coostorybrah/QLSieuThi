@@ -1,3 +1,6 @@
+USE QLSieuThiDB
+GO
+
 -- Roles
 INSERT INTO Roles (RoleName) VALUES
 (N'Admin'),
